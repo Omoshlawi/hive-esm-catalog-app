@@ -84,8 +84,9 @@ const AmenityForm: React.FC<AmenityFormProps> = ({
                 onIconSelect={(icon) =>
                   field.onChange({ family: "TablerIcons", name: icon })
                 }
-                renderTriggerComponent={() => (
+                renderTriggerComponent={({ onTrigger }) => (
                   <TextInput
+                    onClick={onTrigger}
                     label="Icon"
                     placeholder="search icon"
                     readOnly

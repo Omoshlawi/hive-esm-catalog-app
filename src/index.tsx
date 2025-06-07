@@ -1,18 +1,44 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import type { PiletApi } from "@hive/esm-shell-app";
 import { HeaderLink } from "@hive/esm-core-components";
-
-const Page = React.lazy(() => import("./Page"));
+import type { PiletApi } from "@hive/esm-shell-app";
+import * as React from "react";
+import {
+  AddressBook,
+  Amenities,
+  AttributeTypes,
+  Categories,
+  RelationShipTypes,
+} from "./pages";
 
 export function setup(app: PiletApi) {
-  app.registerPage("/dasboard/address-book", Page, { layout: "dashboard" });
-  app.registerPage("/dasboard/amenities", Page, { layout: "dashboard" });
-  app.registerPage("/dasboard/attribute-types", Page, { layout: "dashboard" });
-  app.registerPage("/dasboard/categories", Page, { layout: "dashboard" });
-  app.registerPage("/dasboard/relationship-types", Page, {
-    layout: "dashboard",
-  });
+  app.registerPage(
+    "/dasboard/address-book",
+    () => <AddressBook launchWorkspace={app.launchWorkspace} />,
+    {
+      layout: "dashboard",
+    }
+  );
+  app.registerPage(
+    "/dasboard/amenities",
+    () => <Amenities launchWorkspace={app.launchWorkspace} />,
+    { layout: "dashboard" }
+  );
+  app.registerPage(
+    "/dasboard/attribute-types",
+    () => <AttributeTypes launchWorkspace={app.launchWorkspace} />,
+    { layout: "dashboard" }
+  );
+  app.registerPage(
+    "/dasboard/categories",
+    () => <Categories launchWorkspace={app.launchWorkspace} />,
+    { layout: "dashboard" }
+  );
+  app.registerPage(
+    "/dasboard/relationship-types",
+    () => <RelationShipTypes launchWorkspace={app.launchWorkspace} />,
+    {
+      layout: "dashboard",
+    }
+  );
   app.registerMenu(
     ({ onClose }: any) => (
       <HeaderLink

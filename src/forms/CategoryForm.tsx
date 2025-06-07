@@ -85,7 +85,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                 onIconSelect={(icon) =>
                   field.onChange({ family: "TablerIcons", name: icon })
                 }
-                renderTriggerComponent={() => (
+                renderTriggerComponent={({ onTrigger }) => (
                   <TextInput
                     label="Icon"
                     placeholder="search icon"
@@ -96,6 +96,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                         <TablerIcon name={field.value.name as any} />
                       )
                     }
+                    onClick={onTrigger}
                     error={error?.message}
                   />
                 )}

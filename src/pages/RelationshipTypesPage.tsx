@@ -17,9 +17,9 @@ import { openConfirmModal } from "@mantine/modals";
 import { IconPlus } from "@tabler/icons-react";
 import { Text } from "@mantine/core";
 
-type RelationshipTypesScreenProps = Pick<PiletApi, "launchWorkspace"> & {};
+type RelationshipTypesPageProps = Pick<PiletApi, "launchWorkspace"> & {};
 
-const RelationshipTypesScreen: React.FC<RelationshipTypesScreenProps> = ({
+const RelationshipTypesPage: React.FC<RelationshipTypesPageProps> = ({
   launchWorkspace,
 }) => {
   const relationshipTypesAsync = useRelationshipTypes();
@@ -132,7 +132,7 @@ const RelationshipTypesScreen: React.FC<RelationshipTypesScreenProps> = ({
   );
 };
 
-export default RelationshipTypesScreen;
+export default RelationshipTypesPage;
 const columns: ColumnDef<RelationshipType>[] = [
   {
     accessorKey: "aIsToB",
