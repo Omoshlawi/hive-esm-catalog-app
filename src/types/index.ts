@@ -4,9 +4,6 @@ import {
   AmenitySchema,
   AttributeTypeSchema,
   CategorySchema,
-  PropertyMediaSchema,
-  PropertySchema,
-  RelationshipSchema,
   RelationshipTypeSchema,
 } from "../utils/validation";
 
@@ -122,97 +119,8 @@ export interface Ward {
   updatedAt: string;
 }
 
-
-export interface Property {
-  id: string;
-  name: string;
-  description: any;
-  thumbnail: string;
-  organizationId: string;
-  organization?: Organization;
-  addressId: string;
-  address?: Address;
-  createdBy: string;
-  voided: boolean;
-  createdAt: string;
-  updatedAt: string;
-  categories?: PropertyCategory[];
-  amenities?: PropertyAmenity[];
-  attributes?: Attribute[];
-}
-
-export interface Relationship {
-  id: string;
-  propertyAId: string;
-  propertyBId: string;
-  startDate: string;
-  endDate?: string;
-  typeId: string;
-  voided: boolean;
-  createdAt: string;
-  updatedAt: string;
-  propertyA?: Property;
-  propertyB?: Property;
-  type?: RelationshipType;
-}
-
-export interface PropertyMedia {
-  id: string;
-  propertyId: string;
-  type: string;
-  url: string;
-  title: any;
-  description: string;
-  metadata: Metadata;
-  order: number;
-  voided: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface Metadata {
-  size: number;
-  memeType: string;
-}
-
-export interface PropertyAmenity {
-  id: string;
-  propertyId: string;
-  amenityId: string;
-  voided: boolean;
-  createdAt: string;
-  updatedAt: string;
-  amenity?: Amenity;
-}
-
-export interface PropertyCategory {
-  id: string;
-  propertyId: string;
-  categoryId: string;
-  voided: boolean;
-  createdAt: string;
-  updatedAt: string;
-  category?: Category;
-}
-
-
-export interface Attribute {
-  id: string;
-  propertyId: string;
-  attributeId: string;
-  value: string;
-  voided: boolean;
-  createdAt: string;
-  updatedAt: string;
-  attribute?: AttributeType;
-}
-
-
 export type AmenityFormData = z.infer<typeof AmenitySchema>;
 export type CategoryFormData = z.infer<typeof CategorySchema>;
 export type RelationshipTypeFormData = z.infer<typeof RelationshipTypeSchema>;
 export type AttributeTypeFormData = z.infer<typeof AttributeTypeSchema>;
 export type AddressFormData = z.infer<typeof AddressSchema>;
-export type PropertyFormData = z.infer<typeof PropertySchema>;
-export type PropertyMediaFormData = z.infer<typeof PropertyMediaSchema>;
-export type PropertyRelationshipFormData = z.infer<typeof RelationshipSchema>;

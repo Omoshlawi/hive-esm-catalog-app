@@ -1,13 +1,12 @@
-import React from "react";
-import { RelationshipType, RelationshipTypeFormData } from "../types";
-import { useRelationshipTypeApi } from "../hooks";
 import { handleApiErrors, mutate } from "@hive/esm-core-api";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { RelationshipTypeSchema } from "../utils/validation";
+import { Button, Group, Stack, Textarea, TextInput } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
-import { TablerIconPicker, TablerIcon } from "@hive/esm-core-components";
-import { Stack, TextInput, Group, Button, Textarea } from "@mantine/core";
+import React from "react";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { useRelationshipTypeApi } from "../hooks";
+import { RelationshipType, RelationshipTypeFormData } from "../types";
+import { RelationshipTypeSchema } from "../utils/validation";
 
 type RelationshipTypeFormProps = {
   relationshipType?: RelationshipType;

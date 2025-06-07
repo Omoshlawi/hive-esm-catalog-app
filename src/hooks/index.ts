@@ -7,6 +7,3 @@ export * from "./useAttributeTypesApi";
 export * from "./useCategoryApi";
 export * from "./useRelationshipTypeApi";
 export * from "./useAddresses";
-export { default as useProperties } from "./useProperties";
-export { default as usePropertiesApi } from "./usePropertiesApi";
-export { default as useRelationships } from "./useRelationships";
