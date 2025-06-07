@@ -1,48 +1,49 @@
-import {
-  DataTable,
-  EmptyState,
-  ErrorState,
-  TablerIcon,
-  TableSkeleton,
-  When,
-} from "@hive/esm-core-components";
 import { PiletApi } from "@hive/esm-shell-app";
-import { ActionIcon, Button, Group, Text } from "@mantine/core";
+import React from "react";
+import { Category } from "../types";
+import CategoryForm from "../forms/CategoryForm";
+import {
+  TablerIcon,
+  When,
+  TableSkeleton,
+  ErrorState,
+  EmptyState,
+  DataTable,
+} from "@hive/esm-core-components";
+import { Group, ActionIcon, Button } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
 import { IconPlus } from "@tabler/icons-react";
 import { ColumnDef } from "@tanstack/react-table";
-import React from "react";
-import AmenityForm from "../forms/AmenityForm";
-import { useAmenities } from "../hooks";
-import { Amenity } from "../types";
-type AmenitiespageProps = Pick<PiletApi, "launchWorkspace"> & {};
+import { useCategories } from "../hooks";
+import { Text } from "@mantine/core";
 
-const Amenitiespage: React.FC<AmenitiespageProps> = ({ launchWorkspace }) => {
-  const amenitiesAsync = useAmenities();
+type CategoriesPageProps = Pick<PiletApi, "launchWorkspace"> & {};
 
-  const title = "Amenities";
-  const handleAddOrupdate = (amenity?: Amenity) => {
+const CategoriesPage: React.FC<CategoriesPageProps> = ({ launchWorkspace }) => {
+  const categoriesAsync = useCategories();
+  const title = "Categories";
+  const handleAddOrupdate = (category?: Category) => {
     const dispose = launchWorkspace(
-      <AmenityForm
-        amenity={amenity}
+      <CategoryForm
+        category={category}
         onSuccess={() => dispose()}
         onCloseWorkspace={() => dispose()}
       />,
       {
-        title: amenity ? "Update Amenity" : "Add Amenity",
+        title: category ? "Update Category" : "Add Category",
       }
     );
   };
-  const handleDelete = (amenity: Amenity) => {
+  const handleDelete = (category: Category) => {
     openConfirmModal({
-      title: "Delete Amenity",
+      title: "Delete category",
       children: (
         <Text>
           Are you sure you want to delete this role.This action is destructive
           and will delete all data related to role
         </Text>
       ),
-      labels: { confirm: "Delete amenity", cancel: "No don't delete it" },
+      labels: { confirm: "Delete category", cancel: "No don't delete it" },
       confirmProps: { color: "red" },
       centered: true,
       onConfirm() {
@@ -51,11 +52,11 @@ const Amenitiespage: React.FC<AmenitiespageProps> = ({ launchWorkspace }) => {
     });
   };
 
-  const actions: ColumnDef<Amenity> = {
+  const actions: ColumnDef<Category> = {
     id: "actions",
     header: "Actions",
     cell({ row }) {
-      const amenity = row.original;
+      const category = row.original;
       return (
         <Group>
           <Group>
@@ -63,7 +64,7 @@ const Amenitiespage: React.FC<AmenitiespageProps> = ({ launchWorkspace }) => {
               variant="outline"
               aria-label="Settings"
               color="green"
-              onClick={() => handleAddOrupdate(amenity)}
+              onClick={() => handleAddOrupdate(category)}
             >
               <TablerIcon
                 name="edit"
@@ -75,7 +76,7 @@ const Amenitiespage: React.FC<AmenitiespageProps> = ({ launchWorkspace }) => {
               variant="outline"
               aria-label="Settings"
               color="red"
-              onClick={() => handleDelete(amenity)}
+              onClick={() => handleDelete(category)}
             >
               <TablerIcon
                 name="trash"
@@ -90,7 +91,7 @@ const Amenitiespage: React.FC<AmenitiespageProps> = ({ launchWorkspace }) => {
   };
   return (
     <When
-      asyncState={{ ...amenitiesAsync, data: amenitiesAsync.amenities }}
+      asyncState={{ ...categoriesAsync, data: categoriesAsync.categories }}
       loading={() => <TableSkeleton />}
       error={(e) => <ErrorState error={e} title={title} />}
       success={(data) => {
@@ -120,14 +121,14 @@ const Amenitiespage: React.FC<AmenitiespageProps> = ({ launchWorkspace }) => {
   );
 };
 
-export default Amenitiespage;
+export default CategoriesPage;
 
-const columns: ColumnDef<Amenity>[] = [
+const columns: ColumnDef<Category>[] = [
   {
     accessorKey: "icon",
     header: "Icon",
     cell({ getValue }) {
-      const icon = getValue<Amenity["icon"]>();
+      const icon = getValue<Category["icon"]>();
       if (icon) return <TablerIcon name={icon.name as any} size={16} />;
       return <TablerIcon size={16} name="tournament" />;
     },

@@ -20,6 +20,7 @@
     "@tabler/icons-react": "3.34.0",
     "@hive/esm-core-components": "../hive-esm-core/packages/esm-core-components/hive-esm-core-components-v1.0.0.tgz",
     "@hive/esm-core-api": "../hive-esm-core/packages/esm-core-api/hive-esm-core-api-v1.0.0.tgz",
+    "@tanstack/react-table": "^8.21.3",
     "swr": "2.3.3",
     "zod": "latest",
     "@hookform/resolvers": "5.0.1",
