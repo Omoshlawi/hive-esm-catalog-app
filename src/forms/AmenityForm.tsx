@@ -90,7 +90,9 @@ const AmenityForm: React.FC<AmenityFormProps> = ({
                     label="Icon"
                     placeholder="search icon"
                     readOnly
-                    value={`${field.value.family}/${field?.value?.name}`}
+                    value={`${field.value?.family ?? ""}/${
+                      field?.value?.name ?? ""
+                    }`}
                     leftSection={
                       field.value && (
                         <TablerIcon name={field?.value?.name as any} />
