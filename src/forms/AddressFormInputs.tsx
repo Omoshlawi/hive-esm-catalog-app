@@ -17,19 +17,19 @@ const AddressFormInputs = () => {
   const { counties: locations, error, isLoading } = usePlaces({});
 
   const subCounties = useMemo(
-    () => locations.find((l) => l.name === county)?.subCounties ?? [],
+    () => locations.find((l) => l?.name === county)?.subCounties ?? [],
     [county, locations]
   );
 
   const wards = useMemo(
-    () => subCounties.find((l) => l.name === subCounty)?.wards ?? [],
+    () => subCounties.find((l) => l?.name === subCounty)?.wards ?? [],
     [subCounty, subCounties]
   );
 
   // Only reset subCounty if county changes AND locations are loaded AND the current subCounty doesn't belong to the new county
   useEffect(() => {
     if (county && subCounty && locations.length > 0) {
-      const isValidSubCounty = subCounties.some((sc) => sc.name === subCounty);
+      const isValidSubCounty = subCounties.some((sc) => sc?.name === subCounty);
       if (!isValidSubCounty) {
         setValue("subCounty", "");
       }
@@ -39,7 +39,7 @@ const AddressFormInputs = () => {
   // Similar logic for ward, ensuring locations and subCounties are loaded
   useEffect(() => {
     if (subCounty && ward && subCounties.length > 0) {
-      const isValidWard = wards.some((w) => w.name === ward);
+      const isValidWard = wards.some((w) => w?.name === ward);
       if (!isValidWard) {
         setValue("ward", "");
       }
@@ -67,7 +67,7 @@ const AddressFormInputs = () => {
             <Select
               {...field}
               value={field.value || null}
-              data={locations.map((l) => l.name)}
+              data={locations.map((l) => l?.name)}
               label="County"
               error={fieldState.error?.message}
               nothingFoundMessage="Nothing found..."
@@ -86,7 +86,7 @@ const AddressFormInputs = () => {
             <Select
               {...field}
               value={field.value || null}
-              data={subCounties.map((l) => l.name)}
+              data={subCounties.map((l) => l?.name)}
               label="Sub county"
               error={fieldState.error?.message}
               searchable
@@ -106,7 +106,7 @@ const AddressFormInputs = () => {
             <Select
               {...field}
               value={field.value || null}
-              data={wards.map((l) => l.name)}
+              data={wards.map((l) => l?.name)}
               label="Ward"
               error={fieldState.error?.message}
               searchable

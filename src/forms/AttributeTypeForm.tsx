@@ -82,7 +82,7 @@ const AttributeTypeForm: React.FC<AttributeTypeFormProps> = ({
             name="icon"
             render={({ field, fieldState: { error } }) => (
               <TablerIconPicker
-                initialIcon={(field.value.name as any) ?? "search"}
+                initialIcon={(field.value?.name as any) ?? "search"}
                 onIconSelect={(icon) =>
                   field.onChange({ family: "TablerIcons", name: icon })
                 }
@@ -92,10 +92,10 @@ const AttributeTypeForm: React.FC<AttributeTypeFormProps> = ({
                     label="Icon"
                     placeholder="search icon"
                     readOnly
-                    value={`${field.value.family}/${field.value.name}`}
+                    value={`${field.value.family}/${field.value?.name}`}
                     leftSection={
                       field.value && (
-                        <TablerIcon name={field.value.name as any} />
+                        <TablerIcon name={field.value?.name as any} />
                       )
                     }
                     error={error?.message}

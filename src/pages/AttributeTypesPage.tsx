@@ -136,7 +136,7 @@ const columns: ColumnDef<AttributeType>[] = [
     header: "Icon",
     cell({ getValue }) {
       const icon = getValue<AttributeType["icon"]>();
-      if (icon) return <TablerIcon name={icon.name as any} size={16} />;
+      if (icon) return <TablerIcon name={icon?.name as any} size={16} />;
       return <TablerIcon size={16} name="tournament" />;
     },
   },
