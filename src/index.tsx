@@ -6,6 +6,8 @@ import {
   Amenities,
   AttributeTypes,
   Categories,
+  FinancingOptions,
+  OwnershipTypes,
   RelationShipTypes,
 } from "./pages";
 
@@ -35,6 +37,20 @@ export function setup(app: PiletApi) {
   app.registerPage(
     "/dasboard/relationship-types",
     () => <RelationShipTypes launchWorkspace={app.launchWorkspace} />,
+    {
+      layout: "dashboard",
+    }
+  );
+  app.registerPage(
+    "/dasboard/ownership-types",
+    () => <OwnershipTypes launchWorkspace={app.launchWorkspace} />,
+    {
+      layout: "dashboard",
+    }
+  );
+  app.registerPage(
+    "/dasboard/financing-options",
+    () => <FinancingOptions launchWorkspace={app.launchWorkspace} />,
     {
       layout: "dashboard",
     }
@@ -89,6 +105,28 @@ export function setup(app: PiletApi) {
         to="/dasboard/relationship-types"
         label="Relationship types"
         icon="sitemap"
+        onClose={onClose ?? (() => {})}
+      />
+    ),
+    { type: "admin" }
+  );
+  app.registerMenu(
+    ({ onClose }: any) => (
+      <HeaderLink
+        to="/dasboard/ownership-types"
+        label="Ownership types"
+        icon="userHexagon"
+        onClose={onClose ?? (() => {})}
+      />
+    ),
+    { type: "admin" }
+  );
+  app.registerMenu(
+    ({ onClose }: any) => (
+      <HeaderLink
+        to="/dasboard/financing-options"
+        label="Financing options"
+        icon="tax"
         onClose={onClose ?? (() => {})}
       />
     ),
