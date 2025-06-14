@@ -122,7 +122,7 @@ const columns: ColumnDef<FinancingOption>[] = [
       return <DataTableColumnHeader column={column} title="Status" />;
     },
     cell({ getValue }) {
-      const status = getValue<boolean>();
+      const status = !getValue<boolean>();
       return (
         <Badge color={status ? "red" : "teal"} variant={"outline"}>
           {status ? "Active" : "Inactive"}
