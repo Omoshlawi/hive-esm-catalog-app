@@ -42,7 +42,7 @@ const AttributeTypeForm: React.FC<AttributeTypeFormProps> = ({
         color: "teal",
       });
       onCloseWorkspace?.();
-      onSuccess?.(res.data);
+      onSuccess?.(res);
       mutate("/attribute-types");
     } catch (error) {
       const e = handleApiErrors<AttributeTypeFormData>(error);

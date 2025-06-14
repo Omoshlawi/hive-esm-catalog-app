@@ -35,7 +35,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
         ? await updateCategory(category?.id, data)
         : await addCategory(data);
 
-      onSuccess?.(res.data);
+      onSuccess?.(res);
       onCloseWorkspace?.();
       mutate("/categories");
       showNotification({

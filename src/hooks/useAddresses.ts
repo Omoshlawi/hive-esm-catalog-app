@@ -39,7 +39,8 @@ export const usePlaces = (filters: Record<string, any>) => {
 };
 
 const addAddress = async (data: AddressFormData) => {
-  return await apiFetch<Address>("/addresses", { method: "POST", data });
+  const res = await apiFetch<Address>("/addresses", { method: "POST", data });
+  return res.data;
 };
 
 const updateAddress = async (
@@ -47,19 +48,21 @@ const updateAddress = async (
   data: AddressFormData,
   method: "PUT" | "PATCH" = "PUT"
 ) => {
-  return await apiFetch<Address>(`/addresses/${id}`, {
+  const res = await apiFetch<Address>(`/addresses/${id}`, {
     method: method,
     data,
   });
+  return res.data;
 };
 
 const deleteAddress = async (
   id: string,
   method: "DELETE" | "PURGE" = "DELETE"
 ) => {
-  return await apiFetch<Address>(`/addresses/${id}`, {
+  const res = await apiFetch<Address>(`/addresses/${id}`, {
     method: method,
   });
+  return res.data;
 };
 
 export const useAddressApi = () => {

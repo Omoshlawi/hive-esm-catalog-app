@@ -34,7 +34,7 @@ const AmenityForm: React.FC<AmenityFormProps> = ({
       const res = amenity
         ? await updateAmenity(amenity?.id, data)
         : await addAmenity(data);
-      onSuccess?.(res.data);
+      onSuccess?.(res);
       onCloseWorkspace?.();
       mutate("/amenities");
       showNotification({

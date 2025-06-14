@@ -4,6 +4,8 @@ import {
   AmenitySchema,
   AttributeTypeSchema,
   CategorySchema,
+  FinancingOptionSchema,
+  OwnershipTypeSchema,
   RelationshipTypeSchema,
 } from "../utils/validation";
 
@@ -119,8 +121,27 @@ export interface Ward {
   updatedAt: string;
 }
 
+export interface OwnershipType {
+  id: string;
+  name: string;
+  description?: string;
+  voided: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface FinancingOption {
+  id: string;
+  name: string;
+  description?: string;
+  voided: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export type AmenityFormData = z.infer<typeof AmenitySchema>;
 export type CategoryFormData = z.infer<typeof CategorySchema>;
 export type RelationshipTypeFormData = z.infer<typeof RelationshipTypeSchema>;
 export type AttributeTypeFormData = z.infer<typeof AttributeTypeSchema>;
 export type AddressFormData = z.infer<typeof AddressSchema>;
+export type OwnershipTypeFormData = z.infer<typeof OwnershipTypeSchema>;
+export type FinancingOptionsFormData = z.infer<typeof FinancingOptionSchema>;

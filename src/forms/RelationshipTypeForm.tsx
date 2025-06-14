@@ -35,7 +35,7 @@ const RelationshipTypeForm: React.FC<RelationshipTypeFormProps> = ({
         ? await updateRelationshipType(relationshipType?.id, data)
         : await addRelationshipType(data);
 
-      onSuccess?.(res.data);
+      onSuccess?.(res);
       onCloseWorkspace?.();
       showNotification({
         title: "succes",

@@ -42,3 +42,13 @@ export const AddressSchema = z.object({
   longitude: z.number({ coerce: true }).optional(),
   landmark: z.string(),
 });
+
+export const OwnershipTypeSchema = z.object({
+  name: z.string().nonempty("required"),
+  description: z.string().optional(),
+});
+
+export const FinancingOptionSchema = z.object({
+  name: z.string().nonempty("required"),
+  description: z.string().optional(),
+});

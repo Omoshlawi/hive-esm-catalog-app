@@ -47,7 +47,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
       const res = address
         ? await updateAddress(address?.id, data)
         : await addAddress(data);
-      onSuccess?.(res.data);
+      onSuccess?.(res);
       onCloseWorkspace?.();
       mutate("/addresses");
       showNotification({
