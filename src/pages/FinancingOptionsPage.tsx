@@ -119,13 +119,13 @@ const columns: ColumnDef<FinancingOption>[] = [
   {
     accessorKey: "voided",
     header({ column }) {
-      return <DataTableColumnHeader column={column} title="Voided" />;
+      return <DataTableColumnHeader column={column} title="Status" />;
     },
     cell({ getValue }) {
       const status = getValue<boolean>();
       return (
         <Badge color={status ? "red" : "teal"} variant={"outline"}>
-          {status}
+          {status ? "Active" : "Inactive"}
         </Badge>
       );
     },
