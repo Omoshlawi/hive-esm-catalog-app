@@ -124,7 +124,7 @@ const columns: ColumnDef<FinancingOption>[] = [
     cell({ getValue }) {
       const status = !getValue<boolean>();
       return (
-        <Badge color={status ? "red" : "teal"} variant={"outline"}>
+        <Badge color={status ? "teal" : "red"} variant={"outline"}>
           {status ? "Active" : "Inactive"}
         </Badge>
       );
