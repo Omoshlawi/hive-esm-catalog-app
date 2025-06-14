@@ -1,4 +1,4 @@
-import { apiFetch, APIFetchResponse } from "@hive/esm-core-api";
+import { apiFetch, APIFetchResponse, mutate } from "@hive/esm-core-api";
 import useSWR from "swr";
 import { FinancingOption, FinancingOptionsFormData } from "../types";
 
@@ -11,10 +11,11 @@ export const useFinancingOptions = () => {
 };
 
 const addFinancingOption = async (data: FinancingOptionsFormData) => {
-  return await apiFetch<FinancingOption>("/financing-options", {
+  const res = await apiFetch<FinancingOption>("/financing-options", {
     method: "POST",
     data,
   });
+  return res.data;
 };
 
 const updateFinancingOption = async (
@@ -22,19 +23,21 @@ const updateFinancingOption = async (
   data: FinancingOptionsFormData,
   method: "PUT" | "PATCH" = "PATCH"
 ) => {
-  return await apiFetch<FinancingOption>(`/financing-options/${id}`, {
+  const res = await apiFetch<FinancingOption>(`/financing-options/${id}`, {
     method: method,
     data,
   });
+  return res.data;
 };
 
 const deleteFinancingOption = async (
   id: string,
   method: "DELETE" | "PURGE" = "DELETE"
 ) => {
-  return await apiFetch<FinancingOption>(`/financing-options/${id}`, {
+  const res = await apiFetch<FinancingOption>(`/financing-options/${id}`, {
     method: method,
   });
+  return res.data;
 };
 
 export const useFinancingOptionsApi = () => {
@@ -42,5 +45,6 @@ export const useFinancingOptionsApi = () => {
     addFinancingOption,
     updateFinancingOption,
     deleteFinancingOption,
+    mutateFinancingOption: () => mutate("/financing-options"),
   };
 };

@@ -1,4 +1,4 @@
-import { apiFetch, APIFetchResponse } from "@hive/esm-core-api";
+import { apiFetch, APIFetchResponse, mutate } from "@hive/esm-core-api";
 import useSWR from "swr";
 import { OwnershipType, OwnershipTypeFormData } from "../types";
 
@@ -11,7 +11,7 @@ export const useOwnershipTypes = () => {
 };
 
 const addOwnershipType = async (data: OwnershipTypeFormData) => {
-  const res = await apiFetch<OwnershipType>("/financing-options", {
+  const res = await apiFetch<OwnershipType>("/ownership-types", {
     method: "POST",
     data,
   });
@@ -23,7 +23,7 @@ const updateownershipType = async (
   data: OwnershipTypeFormData,
   method: "PUT" | "PATCH" = "PATCH"
 ) => {
-  const res = await apiFetch<OwnershipType>(`/financing-options/${id}`, {
+  const res = await apiFetch<OwnershipType>(`/ownership-types/${id}`, {
     method: method,
     data,
   });
@@ -34,7 +34,7 @@ const deleteOwnershipType = async (
   id: string,
   method: "DELETE" | "PURGE" = "DELETE"
 ) => {
-  const res = await apiFetch<OwnershipType>(`/financing-options/${id}`, {
+  const res = await apiFetch<OwnershipType>(`/ownership-types/${id}`, {
     method: method,
   });
   return res.data;
@@ -45,5 +45,6 @@ export const useOwnershipTypesApi = () => {
     addOwnershipType,
     updateownershipType,
     deleteOwnershipType,
+    mutateOwnershipType: () => mutate("/ownership-types"),
   };
 };
