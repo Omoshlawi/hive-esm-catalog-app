@@ -1,21 +1,16 @@
-import React from "react";
-import { useAddresses } from "../hooks";
-import { PiletApi } from "@hive/esm-shell-app";
-import { Address } from "../types";
-import AddressForm from "../forms/AddressForm";
-import { openConfirmModal } from "@mantine/modals";
-import { ActionIcon, Button, Group, Text } from "@mantine/core";
-import { ColumnDef } from "@tanstack/react-table";
 import {
-  DataTable,
   DataTableColumnHeader,
-  EmptyState,
-  ErrorState,
-  TablerIcon,
-  TableSkeleton,
-  When,
+  StateFullDataTable,
+  TablerIcon
 } from "@hive/esm-core-components";
-import { IconPlus } from "@tabler/icons-react";
+import { PiletApi } from "@hive/esm-shell-app";
+import { ActionIcon, Group, Text } from "@mantine/core";
+import { openConfirmModal } from "@mantine/modals";
+import { ColumnDef } from "@tanstack/react-table";
+import React from "react";
+import AddressForm from "../forms/AddressForm";
+import { useAddresses } from "../hooks";
+import { Address } from "../types";
 
 type AddressBookPageProps = Pick<PiletApi, "launchWorkspace"> & {};
 
@@ -93,33 +88,13 @@ const AddressBookPage: React.FC<AddressBookPageProps> = ({
     },
   };
   return (
-    <When
-      asyncState={{ ...addressState, data: addressState.addresses }}
-      loading={() => <TableSkeleton />}
-      error={(e) => <ErrorState error={e} title={title} />}
-      success={(data) => {
-        if (!data.length)
-          return <EmptyState title={title} onAdd={() => handleAddOrupdate()} />;
-        return (
-          <DataTable
-            data={data}
-            columns={[...columns, actions]}
-            renderActions={() => (
-              <>
-                <Button
-                  variant="light"
-                  leftSection={<IconPlus />}
-                  onClick={() => handleAddOrupdate()}
-                >
-                  Add
-                </Button>
-              </>
-            )}
-            title={title}
-            withColumnViewOptions
-          />
-        );
-      }}
+    <StateFullDataTable
+      {...addressState}
+      data={addressState.addresses}
+      columns={[...columns, actions]}
+      onAdd={() => handleAddOrupdate()}
+      title={title}
+      withColumnViewOptions
     />
   );
 };
